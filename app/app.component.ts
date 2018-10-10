@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 interface Passenger {
   id: number,
   fullname: string,
-  checkedIn: boolean
+  checkedIn: boolean,
+  checkedInDate: number | null
 }
 
 @Component({
@@ -19,65 +20,46 @@ interface Passenger {
             [class.checked-in]="passenger.checkedIn">
           </span>
           {{ i }}: {{ passenger.fullname }}
+          <p>{{ passenger | json }}</p>
+          <div calss="date">
+            Check in date: {{ 
+                passenger.checkedIn ? 
+                (passenger.checkedInDate | date: 'yMMMMd' | uppercase) : 
+                'Not checked in' 
+            }}
+          </div>
         </li>
       </ul>
 
-      <h3>Airline Passengers</h3>
-      <ul>
-        <li *ngFor="let passenger of passengers; let i = index;">
-          <span 
-            class="status"
-            [ngClass]="{'checked-in' : passenger.checkedIn}">
-          </span>
-          {{ i }}: {{ passenger.fullname }}
-        </li>
-      </ul>
-
-      <h3>Airline Passengers</h3>
-      <ul>
-        <li *ngFor="let passenger of passengers; let i = index;">
-          <span
-          class="status"
-          [style.backgroundColor]="(passenger.checkedIn ? '#2ecc71' : '#c0392b')">
-          </span>
-          {{ i }}: {{ passenger.fullname }}
-        </li>
-      </ul>
-
-      <h3>Airline Passengers</h3>
-      <ul>
-        <li *ngFor="let passenger of passengers; let i = index;">
-          <span
-          class="status"
-          [ngStyle]="{ backgroundColor : (passenger.checkedIn ? '#2ecc71' : '#c0392b')}">
-          </span>
-          {{ i }}: {{ passenger.fullname }}
-        </li>
-      </ul>
-    </div>
+    
   `
 })
 export class AppComponent  {
   passengers: Passenger[] = [{
     id: 1,
     fullname: 'Stephen',
-    checkedIn: true
+    checkedIn: true,
+    checkedInDate: 1490742000000
   },{
     id: 2,
     fullname: 'Rose',
-    checkedIn: false
+    checkedIn: false,
+    checkedInDate: null
   },{
     id: 3,
     fullname: 'James',
-    checkedIn: true
+    checkedIn: true,
+    checkedInDate: 1491606000000
   },{
     id: 4,
     fullname: 'Louise',
-    checkedIn: true
+    checkedIn: true,
+    checkedInDate: 1488412800000
   },{
     id: 5,
     fullname: 'Tina',
-    checkedIn: false
+    checkedIn: false,
+    checkedInDate: null
   }
 ]
 
