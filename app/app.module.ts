@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule }  from  '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 
+import { PassengerDashboardModule } from './passenger-dashboard/passenger-dashboard.module';
 
 import { AppComponent } from './app.component';
 
@@ -11,8 +12,11 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
+    // @ngular
     BrowserModule,
-    CommonModule
+    CommonModule,
+    // custom
+    PassengerDashboardModule
   ],
   bootstrap: [AppComponent]
 })
