@@ -1,5 +1,5 @@
-import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -21,13 +21,19 @@ export class PassengerDashboardService {
       .map((response: Response) => response.json());
   }
 
-  updatePassengers(passenger: Passenger): Observable<Passenger> {
+  updatePassenger(passenger: Passenger): Observable<Passenger> {
+    let options = new RequestOptions ({
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    });
+
     return this.http
-      .put(`${PASSENGER_API}/${passenger.id}`, passenger)
+      .put(`${PASSENGER_API}/${passenger.id}`, passenger, options)
       .map((response: Response) => response.json());
   }
 
-  removePassengers(passenger: Passenger): Observable<Passenger> {
+  removePassenger(passenger: Passenger): Observable<Passenger> {
     return this.http
       .delete(`${PASSENGER_API}/${passenger.id}`)
       .map((response: Response) => response.json());
